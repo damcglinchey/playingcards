@@ -1,0 +1,4 @@
+# ignore compiled & pkg info
+*.egg-info/*
+tests/__pycache__/*
+playingcards/__pycache__/*
