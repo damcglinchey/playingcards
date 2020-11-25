@@ -79,6 +79,42 @@ class Card:
 		"""Get str representation of Card."""
 		return self.rank + self.suit
 
+	def __int__(self):
+		"""Get integer representation of Card."""
+		return self._value
+
 	def __repr__(self):
 		"""Card class representation."""
 		return "{}('{}')".format(self.__class__.__name__, self.__str__())
+
+	def __lt__(self, other):
+		"""Operator self < other."""
+		return self._value < other._value
+
+	def __le__(self, other):
+		"""Operator self <= other."""
+		return self._value <= other._value
+
+	def __eq__(self, other):
+		"""Operator self == other."""
+		return self._value == other._value
+
+	def __ne__(self, other):
+		"""Operator self != other."""
+		return self._value != other._value
+
+	def __gt__(self, other):
+		"""Operator self > other."""
+		return self._value > other._value
+
+	def __ge__(self, other):
+		"""Operator self >= other."""
+		return self._value >= other._value
+
+	def __hash__(self):
+		"""Get hash value for Card. 
+
+		hash() should return an integer, so just return
+		the internal Card._value, which is an int
+		"""
+		return self._value

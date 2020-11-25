@@ -33,3 +33,54 @@ class TestCardAccess(unittest.TestCase):
 		for s in ['H', 'D']:
 			card = Card('2' + s)
 			self.assertEqual(card.color, 'R')
+
+class TestCardConversion(unittest.TestCase):
+	def testConvInt(self):
+		for i in range(0, 52):
+			card = Card(i)
+			self.assertEqual(int(card), i)
+
+	def testConvStr(self):
+		for s in Card._suits:
+			for r in Card._face_cards:
+				cstr = Card._face_cards[r] + Card._suits[s]
+				card = Card(cstr)
+				self.assertEqual(str(card), cstr)
+			for r in range(2, 11):
+				cstr = str(r) + Card._suits[s]
+				card = Card(cstr)
+				self.assertEqual(str(card), cstr)
+
+class TestCardComparison(unittest.TestCase):
+	def testLessThan(self):
+		for i in range(0, 52):
+			for j in range(i+1, 52):
+				self.assertTrue(Card(i) < Card(j))
+
+	def testLessThanEqual(self):
+		for i in range(0, 52):
+			for j in range(i, 52):
+				self.assertTrue(Card(i) <= Card(j))
+
+	def testGreaterThan(self):
+		for i in range(0, 52):
+			for j in range(i+1, 52):
+				self.assertTrue(Card(j) > Card(i))
+
+	def testGreaterThanEqual(self):
+		for i in range(0, 52):
+			for j in range(i, 52):
+				self.assertTrue(Card(j) >= Card(i))
+
+	def testEqual(self):
+		for i in range(0, 52):
+			self.assertTrue(Card(i) == Card(i))
+
+	def testNotEqual(self):
+		for i in range(0, 52):
+			for j in range(0, 52):
+				if i == j:
+					continue
+				else:
+					self.assertTrue(Card(i) != Card(j))
+
