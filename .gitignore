@@ -2,3 +2,4 @@
 *.egg-info/*
 tests/__pycache__/*
 playingcards/__pycache__/*
+playingcards/games/__pycache__/*
