@@ -7,6 +7,7 @@ setuptools.setup(
 	author_email='damcglinchey@gmail.com',
 	description='Tools for playing cards',
 	packages=setuptools.find_packages(),
+	scripts=['scripts/play_war.py'],
 	classifiers=[
 		"Programming Language :: Python :: 3",
 		"Operating System :: OS Independent"],
