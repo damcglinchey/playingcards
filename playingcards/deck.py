@@ -35,6 +35,10 @@ class Deck(object):
         """Create a standard deck of 52 cards."""
         return Deck([Card(i) for i in range(0, 52)])
 
+    def cards(self) -> List[Card]:
+        """Get a list of all cards in the deck."""
+        return self._cards[:]
+
     def shuffle(self) -> None:
         """Shuffle this deck of cards.
 
@@ -45,6 +49,50 @@ class Deck(object):
     def sort(self) -> None:
         """Sort this decks cards in ascending order."""
         self._cards.sort()
+
+    def in_deck(self, card: Card) -> bool:
+        """Check if the card is in this deck."""
+        if card in self._cards:
+            return True
+        else:
+            return False
+
+    def __eq__(self, other: object) -> bool:
+        """Test if all cards are in both decks."""
+        if isinstance(other, Deck):
+            if len(other) != len(self):
+                return False
+            if self._cards == other._cards:
+                return True
+            else:
+                return False
+        else:
+            return NotImplemented
+
+    def __ne__(self, other: object) -> bool:
+        """Test if all cards are not in both decks."""
+        return not self.__eq__(other)
+
+    def play_card(self, card: Card) -> Optional[Card]:
+        """Play a specific card from the Deck.
+
+        Play the requested card from the Deck. If the card
+        doesn't exist in the deck, returns 'None'. If it
+        does exist in the deck, return the Card and remove
+        it from this Deck.
+
+        Args:
+            card: Requested Card to play
+
+        Returns:
+            'card' if it exists in the deck, else None
+
+        """
+        if self.in_deck(card):
+            self._cards.remove(card)
+            return card
+        else:
+            return None
 
     def draw(self, num: int = 1) -> "Deck":
         """Draw a number of cards from this Deck.
@@ -72,34 +120,6 @@ class Deck(object):
             raise ValueError('Not enough cards remain in the Deck')
         else:
             return Deck([self._cards.pop() for i in range(0, num)])
-
-    def in_deck(self, card: Card) -> bool:
-        """Check if the card is in this deck."""
-        if card in self._cards:
-            return True
-        else:
-            return False
-
-    def play_card(self, card: Card) -> Optional[Card]:
-        """Play a specific card from the Deck.
-
-        Play the requested card from the Deck. If the card
-        doesn't exist in the deck, returns 'None'. If it
-        does exist in the deck, return the Card and remove
-        it from this Deck.
-
-        Args:
-            card: Requested Card to play
-
-        Returns:
-            'card' if it exists in the deck, else None
-
-        """
-        if self.in_deck(card):
-            self._cards.remove(card)
-            return card
-        else:
-            return None
 
     def __iadd__(self, other: "Deck") -> "Deck":
         """Add cards from another deck to this deck.
