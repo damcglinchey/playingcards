@@ -56,8 +56,8 @@ class TestDeckMethods(unittest.TestCase):
 	def testSort(self):
 		deck = Deck(self.cards[:])
 		deck.sort()
-		self.assertEqual(deck.draw(), Deck([Card('JD')]))
-		self.assertEqual(deck.draw().cards()[0], Card('AS'))
+		self.assertEqual(deck.draw(), Deck([Card('4C')]))
+		self.assertEqual(deck.draw().cards()[0], Card('10H'))
 
 	def testPlayCard(self):
 		deck = Deck(self.cards[:])

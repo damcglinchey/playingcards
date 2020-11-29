@@ -119,7 +119,7 @@ class Deck(object):
         elif num > len(self):
             raise ValueError('Not enough cards remain in the Deck')
         else:
-            return Deck([self._cards.pop() for i in range(0, num)])
+            return Deck([self._cards.pop(0) for i in range(0, num)])
 
     def __iadd__(self, other: "Deck") -> "Deck":
         """Add cards from another deck to this deck.
@@ -130,3 +130,7 @@ class Deck(object):
         self._cards.extend(other._cards)
         other._cards = []
         return self
+
+    def __add__(self, other: "Deck") -> "Deck":
+        """Add cards from two decks to make new deck."""
+        return Deck(self.cards() + other.cards())
