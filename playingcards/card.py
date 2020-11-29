@@ -80,12 +80,12 @@ class Card:
     @property
     def int_suit(self) -> int:
         """Get an integer representation of the cards suit 0->3."""
-        return self._value // Cards._cards_per_suit
+        return self._value // Card._cards_per_suit
     
     @property
     def int_rank(self) -> int:
         """Get an integer representation of the cards rank 1->13."""
-        return (self._value % Cards._cards_per_suit) + 1
+        return (self._value % Card._cards_per_suit) + 1
     
     def __str__(self) -> str:
         """Get str representation of Card."""
