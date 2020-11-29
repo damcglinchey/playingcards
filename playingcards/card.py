@@ -46,7 +46,7 @@ class Card:
 
         Args:
             val: Either valid 'int' or valid 'str'
-            
+
         """
         if isinstance(val, int):
             self._value = val
@@ -77,6 +77,16 @@ class Card:
         else:
             return str(r+1)
 
+    @property
+    def int_suit(self) -> int:
+        """Get an integer representation of the cards suit 0->3."""
+        return self._value // Cards._cards_per_suit
+    
+    @property
+    def int_rank(self) -> int:
+        """Get an integer representation of the cards rank 1->13."""
+        return (self._value % Cards._cards_per_suit) + 1
+    
     def __str__(self) -> str:
         """Get str representation of Card."""
         return self.rank + self.suit
