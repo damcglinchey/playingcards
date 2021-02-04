@@ -1,8 +1,14 @@
 import setuptools
 
+PROJECT_NAME = 'playingcards'
+
+version = {}
+with open(PROJECT_NAME + '/version.py', 'r') as fp:
+	exec(fp.read(), version)
+
 setuptools.setup(
-	name='playingcards',
-	version='0.0',
+	name=PROJECT_NAME,
+	version=version['__version__'],
 	author='D. McGlinchey',
 	author_email='damcglinchey@gmail.com',
 	description='Tools for playing cards',
